@@ -1,0 +1,26 @@
+name: Build CompatNoCheatPlus
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+      - name: Download BuildTools
+        run: wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+      - name: Build Spigot 1.8.8
+        run: java -jar BuildTools.jar --rev 1.8.8
+      - name: Build CompatNoCheatPlus
+        run: mvn clean package
+      - name: Upload CompatNoCheatPlus
+        uses: actions/upload-artifact@v3
+        with:
+          name: CompatNoCheatPlus
+          path: target/*.jar
