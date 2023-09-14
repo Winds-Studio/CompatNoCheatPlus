@@ -55,8 +55,8 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
     //	protected final Map<CheckType, Integer> cancelChecksBlockDamage = new HashMap<CheckType, Integer>();
     //	protected final Map<CheckType, Integer> cancelChecksDamage = new HashMap<CheckType, Integer>();
 
-    protected boolean useInstaBreakHook;
-    protected int clicksPerSecond;
+    protected final boolean useInstaBreakHook;
+    protected final int clicksPerSecond;
     protected String cancel = null;
     protected long cancelTicks = 0;
 

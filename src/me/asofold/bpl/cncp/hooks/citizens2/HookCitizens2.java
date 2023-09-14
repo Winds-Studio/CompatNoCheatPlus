@@ -19,7 +19,7 @@ public class HookCitizens2 extends AbstractHook implements ConfigurableHook{
 	
 	protected boolean enabled = true;
 	
-	protected String configPrefix = "citizens2.";
+	protected final String configPrefix = "citizens2.";
 	
 	public HookCitizens2(){
 		assertPluginPresent("Citizens");

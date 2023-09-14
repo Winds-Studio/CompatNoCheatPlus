@@ -14,7 +14,7 @@ import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
 public class TickTask2 implements Runnable {
 
 	
-	protected static Map<CheckType, Set<Player>> exemptions = new LinkedHashMap<>(40);
+	protected static final Map<CheckType, Set<Player>> exemptions = new LinkedHashMap<>(40);
 
 	/**
 	 * Quick fix, meant for sync access (!).

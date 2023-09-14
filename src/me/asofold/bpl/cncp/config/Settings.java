@@ -15,11 +15,11 @@ import me.asofold.bpl.cncp.config.compatlayer.NewConfig;
 public class Settings {
     public static final int configVersion = 2;
     
-    public Set<String> forceEnableLater = new LinkedHashSet<>();
-    public Set<String> loadPlugins = new LinkedHashSet<>();
-    public Set<CheckType> extemptChecks = new LinkedHashSet<>();
+    public final Set<String> forceEnableLater = new LinkedHashSet<>();
+    public final Set<String> loadPlugins = new LinkedHashSet<>();
+    public final Set<CheckType> extemptChecks = new LinkedHashSet<>();
     
-    public static Set<String> preventAddHooks = new HashSet<>();
+    public static final Set<String> preventAddHooks = new HashSet<>();
     
     public static CompatConfig getDefaultConfig(){
         CompatConfig cfg = new NewConfig(null);

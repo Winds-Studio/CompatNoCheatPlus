@@ -26,7 +26,7 @@ public abstract class ClassExemptionHook extends AbstractHook implements Configu
 	protected final List<String> defaultClasses = new LinkedList<>();
 	protected final LinkedHashSet<String> classes = new LinkedHashSet<>();
 	
-	protected boolean defaultEnabled = true;
+	protected final boolean defaultEnabled = true;
 	protected boolean enabled = true;
 	
 	protected final String configPrefix;

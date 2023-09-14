@@ -86,7 +86,7 @@ public class ActionFrequency {
             // Time ran backwards.
             if (noAutoReset) {
                 // Only update time and lastUpdate.
-                time = lastUpdate = now;
+                time = now;
             } else {
                 // Clear all.
                 clear(now);

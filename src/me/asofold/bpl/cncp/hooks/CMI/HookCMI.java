@@ -24,7 +24,7 @@ public class HookCMI extends AbstractHook implements Listener, ConfigurableHook 
 
     protected boolean enabled = true;
 
-    protected String configPrefix = "cmi.";
+    protected final String configPrefix = "cmi.";
 
     protected final ExemptionManager exMan = new ExemptionManager();
     
