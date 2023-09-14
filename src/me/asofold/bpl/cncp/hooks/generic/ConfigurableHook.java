@@ -14,7 +14,7 @@ public interface ConfigurableHook {
 	 * @param cfg
 	 * @param prefix
 	 */
-	public void applyConfig(CompatConfig cfg, String prefix);
+    void applyConfig(CompatConfig cfg, String prefix);
 	
 	/**
 	 * Update the given configuration with defaults where / if necessary (no blunt overwrite, it is a users config). 
@@ -22,11 +22,11 @@ public interface ConfigurableHook {
 	 * @param prefix
 	 * @return If the configuration was changed.
 	 */
-	public boolean updateConfig(CompatConfig cfg, String prefix);
+    boolean updateConfig(CompatConfig cfg, String prefix);
 	
 	/**
 	 * If the hook is enabled by configuration or not.
 	 * @return
 	 */
-	public boolean isEnabled();
+    boolean isEnabled();
 }

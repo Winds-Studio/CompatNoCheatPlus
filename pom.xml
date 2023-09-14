@@ -14,30 +14,32 @@
     </scm>
     
     <!-- Repositories -->
-  <repositories>
-    <repository>
-      <id>opencollab-snapshot-repo</id>
-      <url>https://repo.opencollab.dev/maven-snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-    <repository>
-        <id>viaversion-repo</id>
-        <url>https://repo.viaversion.com</url>
-    </repository>
-    <repository>
-        <id>bungeecord-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>opencollab-main-repo</id>
+            <url>https://repo.opencollab.dev/main/</url>
+        </repository>
+        <repository>
+            <id>opencollab-snapshot-repo</id>
+            <url>https://repo.opencollab.dev/maven-snapshots/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>viaversion-repo</id>
+            <url>https://repo.viaversion.com</url>
+        </repository>
+        <repository>
+            <id>bungeecord-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>citizens-repo</id>
+            <url>https://maven.citizensnpcs.co/repo</url>
+        </repository>
+    </repositories>
 
     <!-- Dependencies -->
     <dependencies>
@@ -50,34 +52,36 @@
        <dependency>
           <groupId>com.gmail.nossr50.mcMMO</groupId>
           <artifactId>mcMMO</artifactId>
-          <version>2.1.158</version>
+          <version>2.1.223</version>
           <scope>system</scope>
-          <systemPath>${basedir}/libs/mcMMO-2.1.158.jar</systemPath>
+          <systemPath>${basedir}/libs/mcMMO.jar</systemPath>
        </dependency>
        <dependency>
           <groupId>net.citizensnpcs</groupId>
           <artifactId>citizensapi</artifactId>
-          <version>2.0.26-SNAPSHOT</version>
+          <version>2.0.32-SNAPSHOT</version>
           <scope>provided</scope>
        </dependency>
        <dependency>
           <groupId>com.benzoft.gravitytubes</groupId>
           <artifactId>gravitytubes</artifactId>
-          <version>1.0</version>
+          <version>1.11.4</version>
           <scope>system</scope>
           <systemPath>${basedir}/libs/GravityTubes.jar</systemPath>
        </dependency>
        <dependency>
           <groupId>com.Zrips.CMI</groupId>
           <artifactId>CMI</artifactId>
-          <version>1.0</version>
+          <version>9.5.0.8</version>
           <scope>system</scope>
-          <systemPath>${basedir}/libs/CMIAPI7.6.2.0.jar</systemPath>
+          <systemPath>${basedir}/libs/CMI-API9.5.0.8.jar</systemPath>
        </dependency>
        <dependency>
 	      <groupId>com.github.updated-nocheatplus.nocheatplus</groupId>
 	      <artifactId>nocheatplus</artifactId>
 	      <version>-SNAPSHOT</version>
+          <systemPath>${basedir}/libs/NoCheatPlus.jar</systemPath>
+          <scope>system</scope>
        </dependency>
        <dependency>
           <groupId>org.geysermc</groupId>
@@ -88,13 +92,13 @@
        <dependency>
           <groupId>org.geysermc.floodgate</groupId>
           <artifactId>api</artifactId>
-          <version>2.0-SNAPSHOT</version>
+           <version>fix-weird-via-issue-2.2.2-SNAPSHOT</version>
           <scope>provided</scope>
        </dependency>
        <dependency>
           <groupId>net.md-5</groupId>
           <artifactId>bungeecord-api</artifactId>
-          <version>1.19-R0.1-SNAPSHOT</version>
+          <version>1.20-R0.1-SNAPSHOT</version>
        </dependency>
        <dependency>
            <groupId>com.viaversion</groupId>
@@ -104,7 +108,7 @@
        <dependency>
           <groupId>net.md-5</groupId>
           <artifactId>bungeecord-event</artifactId>
-          <version>1.19-R0.1-SNAPSHOT</version>
+          <version>1.20-R0.1-SNAPSHOT</version>
        </dependency>
     </dependencies>
 

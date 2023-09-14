@@ -14,7 +14,7 @@ import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
 public class TickTask2 implements Runnable {
 
 	
-	protected static Map<CheckType, Set<Player>> exemptions = new LinkedHashMap<CheckType, Set<Player>>(40);
+	protected static Map<CheckType, Set<Player>> exemptions = new LinkedHashMap<>(40);
 
 	/**
 	 * Quick fix, meant for sync access (!).
@@ -22,15 +22,10 @@ public class TickTask2 implements Runnable {
 	 * @param checkTypes
 	 */
 	public static void addUnexemptions(final Player player, final CheckType[] checkTypes){
-		for (int i = 0; i < checkTypes.length; i ++){
-			final CheckType type = checkTypes[i];
-			Set<Player> set = exemptions.get(type);
-			if (set == null){
-				set = new HashSet<Player>();
-				exemptions.put(type, set);
-			}
-			set.add(player);
-		}
+        for (final CheckType type : checkTypes) {
+            Set<Player> set = exemptions.computeIfAbsent(type, k -> new HashSet<>());
+            set.add(player);
+        }
 	}
 	
 	@Override

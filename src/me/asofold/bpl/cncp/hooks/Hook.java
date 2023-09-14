@@ -20,29 +20,29 @@ public interface Hook{
 	 * 
 	 * @return
 	 */
-	public String getHookName();
+    String getHookName();
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public String getHookVersion();
+    String getHookVersion();
 	
 	/**
 	 * The check types to register for, see NCPHookManager for reference, you can use ALL,   
 	 */
-	public CheckType[] getCheckTypes();
+    CheckType[] getCheckTypes();
 	
 	/**
 	 * Get listener instances to be registered with cncp.
 	 * @return null if unused.
 	 */
-	public Listener[] getListeners();
+    Listener[] getListeners();
 	
 	/**
 	 * Get the hook to be registered with NCP, the registration will take place after NoCheatPlus has been enabled.
 	 * @return Should always return the same hook or null if not used.
 	 */
-	public NCPHook getNCPHook();
+    NCPHook getNCPHook();
 	
 }

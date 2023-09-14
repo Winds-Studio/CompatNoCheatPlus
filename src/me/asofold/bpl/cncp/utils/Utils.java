@@ -6,7 +6,7 @@ import java.io.Writer;
 
 public class Utils {
 
-	public static final String toString(final Throwable t) {
+	public static String toString(final Throwable t) {
 		final Writer buf = new StringWriter(500);
 		final PrintWriter writer = new PrintWriter(buf);
 		t.printStackTrace(writer);

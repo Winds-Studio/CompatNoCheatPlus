@@ -13,7 +13,7 @@ public class CompatConfigFactory {
 	 * @param file May be null (then memory is used).
 	 * @return null if fails.
 	 */
-	public static final CompatConfig getConfig(File file){
+	public static CompatConfig getConfig(File file){
 		CompatConfig out = null;
 		// TODO: add more (latest API)
 //		try{
@@ -22,7 +22,7 @@ public class CompatConfigFactory {
 //		}
 		try{
 			return new NewConfig(file);
-		} catch (Throwable t){
+		} catch (Throwable ignored){
 			
 		}
 		return out;
@@ -32,7 +32,7 @@ public class CompatConfigFactory {
 //		return new OldConfig(file);
 //	}
 	
-	public static final CompatConfig getNewConfig(File file){
+	public static CompatConfig getNewConfig(File file){
 		return new NewConfig(file);
 	}
 	

@@ -20,33 +20,33 @@ public final class HookPlayerClass extends AbstractHook implements ConfigurableH
 	
 	private static final boolean defaultEnabled = false;
 	
-	protected final Set<String> classNames = new HashSet<String>();
+	private final Set<String> classNames = new HashSet<>();
 	
-	protected boolean exemptAll = true;
+	private boolean exemptAll = true;
 	
-	protected boolean checkSuperClass = true;
+	private boolean checkSuperClass = true;
 	
-	protected Object ncpHook = null;
+	private Object ncpHook = null;
 	
-	protected boolean enabled = defaultEnabled;
+	private boolean enabled = defaultEnabled;
 	
 	/**
 	 * Normal class name.
 	 */
-	protected Set<String> playerClassNames = new HashSet<String>();
+	private final Set<String> playerClassNames = new HashSet<>();
 	
 	public HookPlayerClass(){
 		// TODO: Might need cleanup.
-		this.playerClassNames.addAll(Arrays.asList(new String[]{"CraftPlayer", "SpoutCraftPlayer", "SpoutPlayer", "SpoutClientPlayer", "SpoutPlayerSnapshot"}));
+		this.playerClassNames.addAll(Arrays.asList("CraftPlayer", "SpoutCraftPlayer", "SpoutPlayer", "SpoutClientPlayer", "SpoutPlayerSnapshot"));
 	}
 
 	@Override
-	public final String getHookName() {
+	public String getHookName() {
 		return "PlayerClass(default)";
 	}
 
 	@Override
-	public final String getHookVersion() {
+	public String getHookVersion() {
 		return "2.3";
 	}
 
@@ -55,7 +55,7 @@ public final class HookPlayerClass extends AbstractHook implements ConfigurableH
 		if (ncpHook == null){
 			ncpHook = new NCPHook() {
 				@Override
-				public final boolean onCheckFailure(final CheckType checkType, final Player player, final IViolationInfo info) {
+				public boolean onCheckFailure(final CheckType checkType, final Player player, final IViolationInfo info) {
 					if (exemptAll && !playerClassNames.contains(player.getClass().getSimpleName())) return true;
 					else {
 						if (classNames.isEmpty()) return false;
@@ -108,7 +108,7 @@ public final class HookPlayerClass extends AbstractHook implements ConfigurableH
 		defaults.set(prefix + "player-class.enabled", defaultEnabled);
 		defaults.set(prefix + "player-class.exempt-names", new LinkedList<String>());
 		defaults.set(prefix + "player-class.exempt-all", true);
-		defaults.set(prefix + "player-class.class-names", new LinkedList<String>(playerClassNames));
+		defaults.set(prefix + "player-class.class-names", new LinkedList<>(playerClassNames));
 		defaults.set(prefix + "player-class.super-class", true);
 		return ConfigUtil.forceDefaults(defaults, cfg);
 	}

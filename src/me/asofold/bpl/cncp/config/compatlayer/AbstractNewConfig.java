@@ -44,7 +44,7 @@ public abstract class AbstractNewConfig extends AbstractConfig {
 	@Override
 	public List<String> getStringKeys(String path) {
 		// TODO policy: only strings or all keys as strings ?
-		List<String> out = new LinkedList<String>();
+		List<String> out = new LinkedList<>();
 		List<Object> keys = getKeys(path);
 		if ( keys == null ) return out;
 		for ( Object obj : keys){
@@ -62,7 +62,7 @@ public abstract class AbstractNewConfig extends AbstractConfig {
 
 	@Override
 	public List<Object> getKeys(String path) {
-		List<Object> out = new LinkedList<Object>();
+		List<Object> out = new LinkedList<>();
 		Set<String> keys;
 		if ( path == null) keys = config.getKeys(false);
 		else{
@@ -100,14 +100,14 @@ public abstract class AbstractNewConfig extends AbstractConfig {
 	@Override
 	public List<String> getStringList(String path, List<String> defaultValue) {
 		if ( !hasEntry(path)) return defaultValue;
-		List<String> out = new LinkedList<String>();
+		List<String> out = new LinkedList<>();
 		List<String> entries = config.getStringList(path);
 		if ( entries == null ) return defaultValue;
 		for ( String entry : entries){
-			if ( entry instanceof String) out.add(entry);
+			if (entry instanceof String) out.add(entry);
 			else{
 				try{
-					out.add(entry.toString());
+					out.add(entry);
 				} catch (Throwable t){
 					// ignore
 				}
@@ -152,7 +152,7 @@ public abstract class AbstractNewConfig extends AbstractConfig {
 			else return defaultValue;
 		}
 		Boolean res = defaultValue; 
-		if ( val == null ){
+		if (val == null) {
 			if ( defaultValue == null) defaultValue = false;
 			res = config.getBoolean(path, defaultValue);
 		}

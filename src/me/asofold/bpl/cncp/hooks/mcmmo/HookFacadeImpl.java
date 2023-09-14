@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -52,7 +51,7 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
     };
 
     // Presets for after failure exemption.
-    protected final Map<CheckType, Integer> cancelChecksBlockBreak = new HashMap<CheckType, Integer>();
+    protected final Map<CheckType, Integer> cancelChecksBlockBreak = new HashMap<>();
     //	protected final Map<CheckType, Integer> cancelChecksBlockDamage = new HashMap<CheckType, Integer>();
     //	protected final Map<CheckType, Integer> cancelChecksDamage = new HashMap<CheckType, Integer>();
 
@@ -61,12 +60,12 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
     protected String cancel = null;
     protected long cancelTicks = 0;
 
-    protected final Map<CheckType, Integer> cancelChecks = new HashMap<CheckType, Integer>();
+    protected final Map<CheckType, Integer> cancelChecks = new HashMap<>();
 
     /**
      * Last block breaking time
      */
-    protected final Map<String, ActionFrequency> lastBreak = new HashMap<String, ActionFrequency>(50);
+    protected final Map<String, ActionFrequency> lastBreak = new HashMap<>(50);
 
     /** Counter for nested events to cancel break counting. */
     protected int breakCancel = 0; 
@@ -126,7 +125,7 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
         return false;
     }
 
-    private  final void setPlayer(final Player player, Map<CheckType, Integer> cancelChecks){
+    private void setPlayer(final Player player, Map<CheckType, Integer> cancelChecks){
         cancel = player.getName();
         cancelTicks = player.getTicksLived();
         this.cancelChecks.clear();
@@ -211,7 +210,7 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
         final long ts = System.currentTimeMillis();
         if (ts - lastBreakCleanup < 30000 && ts > lastBreakCleanup) return;
         lastBreakCleanup = ts;
-        final List<String> rem = new LinkedList<String>();
+        final List<String> rem = new LinkedList<>();
         if (ts >= lastBreakCleanup){
             for (final Entry<String, ActionFrequency> entry : lastBreak.entrySet()){
                 if (entry.getValue().score(1f) == 0f) rem.add(entry.getKey());

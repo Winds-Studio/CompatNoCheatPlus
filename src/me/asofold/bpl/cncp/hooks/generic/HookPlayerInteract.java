@@ -7,8 +7,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.Arrays;
-
 /**
  * Wrap player interact events to exempt players from checks by comparison of event class names.
  * Uses mc_dev's format for exemption based upon class names.
@@ -18,10 +16,8 @@ public class HookPlayerInteract extends ClassExemptionHook implements Listener{
 
 	public HookPlayerInteract() {
 		super("player-interact.");
-		defaultClasses.addAll(Arrays.asList(new String[]{
-			// MagicSpells
-			"MagicSpellsPlayerInteractEvent"
-		}));
+		defaultClasses.add(// MagicSpells
+                "MagicSpellsPlayerInteractEvent");
 	}
 
 	@Override

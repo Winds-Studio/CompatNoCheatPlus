@@ -1,5 +1,7 @@
 package me.asofold.bpl.cncp.utils;
 
+import java.util.Arrays;
+
 /**
  * Keep track of frequency of some action, 
  * put weights into buckets, which represent intervals of time. <br>
@@ -120,9 +122,7 @@ public class ActionFrequency {
      * @param now
      */
     public final void clear(final long now) {
-        for (int i = 0; i < buckets.length; i++) {
-            buckets[i] = 0f;
-        }
+        Arrays.fill(buckets, 0f);
         time = lastUpdate = now;
     }
 
@@ -257,8 +257,8 @@ public class ActionFrequency {
         // TODO: Backwards-compatible lastUpdate ?
         final StringBuilder buffer = new StringBuilder(50);
         buffer.append(buckets.length + ","+durBucket+","+time);
-        for (int i = 0; i < buckets.length; i++) {
-            buffer.append("," + buckets[i]);
+        for (float bucket : buckets) {
+            buffer.append("," + bucket);
         }
         return buffer.toString();
     }

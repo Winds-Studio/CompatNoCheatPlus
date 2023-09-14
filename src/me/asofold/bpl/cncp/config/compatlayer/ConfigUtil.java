@@ -1,6 +1,7 @@
 package me.asofold.bpl.cncp.config.compatlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -69,17 +70,17 @@ public class ConfigUtil {
 		try{
 			Double.parseDouble(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException e){
+		} catch (NumberFormatException ignored){
 		}
 		try{
 			Long.parseLong(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException e){
+		} catch (NumberFormatException ignored){
 		}
 		try{
 			Integer.parseInt(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException e){
+		} catch (NumberFormatException ignored){
 		}
 		return input;
 	}
@@ -148,11 +149,9 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final <T>  List<T> asList(final T[] input){
-		final List<T> out = new ArrayList<T>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static <T>  List<T> asList(final T[] input){
+		final List<T> out = new ArrayList<>(input.length);
+        Collections.addAll(out, input);
 		return out;
 	}
 	
@@ -161,11 +160,11 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final List<Integer> asList(final int[] input){
-		final List<Integer> out = new ArrayList<Integer>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static List<Integer> asList(final int[] input){
+		final List<Integer> out = new ArrayList<>(input.length);
+        for (int j : input) {
+            out.add(j);
+        }
 		return out;
 	}
 	
@@ -174,11 +173,11 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final List<Long> asList(final long[] input){
-		final List<Long> out = new ArrayList<Long>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static List<Long> asList(final long[] input){
+		final List<Long> out = new ArrayList<>(input.length);
+        for (long l : input) {
+            out.add(l);
+        }
 		return out;
 	}
 	
@@ -187,11 +186,11 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final List<Double> asList(final double[] input){
-		final List<Double> out = new ArrayList<Double>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static List<Double> asList(final double[] input){
+		final List<Double> out = new ArrayList<>(input.length);
+        for (double v : input) {
+            out.add(v);
+        }
 		return out;
 	}
 	
@@ -200,11 +199,11 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final List<Float> asList(final float[] input){
-		final List<Float> out = new ArrayList<Float>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static List<Float> asList(final float[] input){
+		final List<Float> out = new ArrayList<>(input.length);
+        for (float v : input) {
+            out.add(v);
+        }
 		return out;
 	}
 	
@@ -213,11 +212,11 @@ public class ConfigUtil {
 	 * @param input
 	 * @return
 	 */
-	public static final List<Boolean> asList(final boolean[] input){
-		final List<Boolean> out = new ArrayList<Boolean>(input.length);
-		for (int i = 0; i < input.length; i++){
-			out.add(input[i]);
-		}
+	public static List<Boolean> asList(final boolean[] input){
+		final List<Boolean> out = new ArrayList<>(input.length);
+        for (boolean b : input) {
+            out.add(b);
+        }
 		return out;
 	}
 	

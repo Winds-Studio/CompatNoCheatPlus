@@ -1,6 +1,7 @@
 package me.asofold.bpl.cncp;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -29,7 +30,6 @@ import fr.neatmonster.nocheatplus.components.registry.feature.IDisableListener;
 import fr.neatmonster.nocheatplus.hooks.NCPHook;
 import fr.neatmonster.nocheatplus.hooks.NCPHookManager;
 import me.asofold.bpl.cncp.bedrock.BedrockPlayerListener;
-import me.asofold.bpl.cncp.ClientVersion.ClientVersionListener;
 import me.asofold.bpl.cncp.config.Settings;
 import me.asofold.bpl.cncp.config.compatlayer.CompatConfig;
 import me.asofold.bpl.cncp.config.compatlayer.NewConfig;
@@ -58,9 +58,9 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
     private boolean bungee;
 
     /** Hooks registered with cncp */
-    private static final Set<Hook> registeredHooks = new HashSet<Hook>();
+    private static final Set<Hook> registeredHooks = new HashSet<>();
 
-    private final List<Hook> builtinHooks = new LinkedList<Hook>();
+    private final List<Hook> builtinHooks = new LinkedList<>();
 
     /**
      * Flag if plugin is enabled.
@@ -176,43 +176,39 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.generic.HookSetSpeed());
         }
-        catch (Throwable t) {}
+        catch (Throwable ignored) {}
         // Citizens 2
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.citizens2.HookCitizens2());
         }
-        catch (Throwable t) {}
+        catch (Throwable ignored) {}
         // mcMMO
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.mcmmo.HookmcMMO());
         }
-        catch (Throwable t) {}
+        catch (Throwable ignored) {}
         // GravityTubes
         try {
         	builtinHooks.add(new me.asofold.bpl.cncp.hooks.GravityTubes.HookGravityTubes());
         }
-        catch (Throwable t) {}
+        catch (Throwable ignored) {}
         // CMI
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.CMI.HookCMI());
         }
-        catch (Throwable t){}
+        catch (Throwable ignored){}
 //        // MagicSpells
 //        try{
 //            builtinHooks.add(new me.asofold.bpl.cncp.hooks.magicspells.HookMagicSpells());
 //        }
 //        catch (Throwable t){}
         // Simple generic hooks
-        for (Hook hook : new Hook[]{
-                new HookPlayerClass(),
+        Collections.addAll(builtinHooks, new HookPlayerClass(),
                 new HookBlockBreak(),
                 new HookBlockPlace(),
                 new HookInstaBreak(),
                 new HookEntityDamageByEntity(),
-                new HookPlayerInteract()
-        }){
-            builtinHooks.add(hook);
-        }
+                new HookPlayerInteract());
     }
 
     /**
@@ -230,7 +226,7 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
                 try{
                     addHook(hook);
                 }
-                catch (Throwable t){}
+                catch (Throwable ignored){}
             }
         }
     }
@@ -249,7 +245,6 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
         final PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(this, this);
         pm.registerEvents(new BedrockPlayerListener(), this);
-        pm.registerEvents(new ClientVersionListener(), this);
         getServer().getMessenger().registerIncomingPluginChannel(this, "cncp:geyser", new BedrockPlayerListener());
         try {
             bungee = getServer().spigot().getConfig().getBoolean("settings.bungeecord");
@@ -289,15 +284,13 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
     }
 
     public boolean loadSettings() {
-        final Set<String> oldForceEnableLater = new LinkedHashSet<String>();
-        oldForceEnableLater.addAll(settings.forceEnableLater);
+        final Set<String> oldForceEnableLater = new LinkedHashSet<>(settings.forceEnableLater);
         // Read and apply config to settings:
         File file = new File(getDataFolder() , "cncp.yml");
         CompatConfig cfg = new NewConfig(file);
         cfg.load();
-        boolean changed = false;
+        boolean changed = Settings.addDefaults(cfg);
         // General settings:
-        if (Settings.addDefaults(cfg)) changed = true;
         settings.fromConfig(cfg);
         // Settings for builtin hooks:
         for (Hook hook : builtinHooks){
@@ -338,27 +331,24 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
         }
         if (!oldForceEnableLater.isEmpty()){
             System.out.println("[CompatNoCheatPlus] Schedule task to re-enable plugins later...");
-            sched.scheduleSyncDelayedTask(this, new Runnable() {
-                @Override
-                public void run() {
-                    // (Later maybe re-enabling this plugin could be added.)
-                    // TODO: log levels !
-                    for (String plgName : oldForceEnableLater){
-                        try{
-                            if (disablePlugin(plgName)){
-                                if (enablePlugin(plgName)) System.out.println("[CompatNoCheatPlus] Re-enabled plugin: " + plgName);
-                                else System.out.println("[CompatNoCheatPlus] Could not re-enable plugin: "+plgName);
-                            }
-                            else{
-                                System.out.println("[CompatNoCheatPlus] Could not disable plugin (already disabled?): "+plgName);
-                            }
+            sched.scheduleSyncDelayedTask(this, () -> {
+                // (Later maybe re-enabling this plugin could be added.)
+                // TODO: log levels !
+                for (String plgName : oldForceEnableLater){
+                    try{
+                        if (disablePlugin(plgName)){
+                            if (enablePlugin(plgName)) System.out.println("[CompatNoCheatPlus] Re-enabled plugin: " + plgName);
+                            else System.out.println("[CompatNoCheatPlus] Could not re-enable plugin: "+plgName);
                         }
-                        catch (Throwable t){
-                            // TODO: maybe log ?
+                        else{
+                            System.out.println("[CompatNoCheatPlus] Could not disable plugin (already disabled?): "+plgName);
                         }
                     }
+                    catch (Throwable t){
+                        // TODO: maybe log ?
+                    }
                 }
-            }); 
+            });
         }
 
         return true;
@@ -418,13 +408,8 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
             return;
         }
         // Register to remove hooks when NCP is disabling.
-        NCPAPIProvider.getNoCheatPlusAPI().addComponent(new IDisableListener(){
-            @Override
-            public void onDisable() {
-                // Remove all registered cncp hooks:
-                unregisterNCPHooks();
-            }
-        });
+        // Remove all registered cncp hooks:
+        NCPAPIProvider.getNoCheatPlusAPI().addComponent((IDisableListener) this::unregisterNCPHooks);
         if (registeredHooks.isEmpty()) {
             return;
         }
@@ -446,7 +431,7 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
      * @param sender
      */
     private void sendInfo(CommandSender sender) {
-        List<String> infos = new LinkedList<String>();
+        List<String> infos = new LinkedList<>();
         infos.add("---- Version infomation ----");
         // Server
         infos.add("#### Server ####");

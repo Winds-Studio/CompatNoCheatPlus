@@ -18,7 +18,7 @@ import fr.neatmonster.nocheatplus.checks.CheckType;
 
 public class HookMagicSpells extends AbstractConfigurableHook implements Listener{
 	
-	protected final Map<String, CheckType[]> spellMap = new HashMap<String, CheckType[]>();
+	protected final Map<String, CheckType[]> spellMap = new HashMap<>();
 	
 	public HookMagicSpells(){
 		super("MagicSpells(default)", "1.0", "magicspells.");
@@ -79,14 +79,14 @@ public class HookMagicSpells extends AbstractConfigurableHook implements Listene
 			String types = cfg.getString(fullKey);
 			if (types == null) continue;
 			String[] split = types.split(",");
-			Set<CheckType> checkTypes = new HashSet<CheckType>();
+			Set<CheckType> checkTypes = new HashSet<>();
 			for (String input : split){
 				input = input.trim().toUpperCase().replace('-', '_').replace(' ', '_').replace('.', '_');
 				CheckType type = null;
 				try{
 					type = CheckType.valueOf(input);
 				}
-				catch(Throwable t){
+				catch(Throwable ignored){
 				}
 				if (type == null){
 					Bukkit.getLogger().warning("[CompatNoCheatPlus] HookMagicSpells: Bad check type at " + fullKey + ": " + input);

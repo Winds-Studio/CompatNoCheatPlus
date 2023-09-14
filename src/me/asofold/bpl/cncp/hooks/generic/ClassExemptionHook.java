@@ -23,8 +23,8 @@ public abstract class ClassExemptionHook extends AbstractHook implements Configu
 
 	protected final ExemptionManager man = new ExemptionManager();
 	
-	protected final List<String> defaultClasses = new LinkedList<String>();
-	protected final LinkedHashSet<String> classes = new LinkedHashSet<String>();
+	protected final List<String> defaultClasses = new LinkedList<>();
+	protected final LinkedHashSet<String> classes = new LinkedHashSet<>();
 	
 	protected boolean defaultEnabled = true;
 	protected boolean enabled = true;

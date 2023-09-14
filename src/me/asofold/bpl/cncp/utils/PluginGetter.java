@@ -23,13 +23,13 @@ public final class PluginGetter<T extends Plugin> implements Listener{
 	 * Fetch from Bukkit and set , might set to null, though.
 	 */
 	@SuppressWarnings("unchecked")
-	public final void fetchPlugin() {
+	public void fetchPlugin() {
 		final Plugin ref = Bukkit.getPluginManager().getPlugin(pluginName);
 		plugin = (T) ref;
 	}
 	
 	@SuppressWarnings("unchecked")
-	final void onPluginEnable(final PluginEnableEvent event){
+    void onPluginEnable(final PluginEnableEvent event){
 		final Plugin ref = event.getPlugin();
 		if (plugin.getName().equals(pluginName)) plugin = (T) ref;
 	}
@@ -39,12 +39,12 @@ public final class PluginGetter<T extends Plugin> implements Listener{
 	 * @param other
 	 * @return
 	 */
-	public final PluginGetter<T> registerEvents(final Plugin other){
+	public PluginGetter<T> registerEvents(final Plugin other){
 		Bukkit.getPluginManager().registerEvents(this, plugin);
 		return this;
 	}
 	
-	public final T getPlugin(){
+	public T getPlugin(){
 		return plugin;
 	}
 }

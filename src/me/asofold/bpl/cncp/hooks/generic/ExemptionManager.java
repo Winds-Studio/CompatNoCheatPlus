@@ -19,7 +19,7 @@ import fr.neatmonster.nocheatplus.hooks.NCPExemptionManager;
  */
 public class ExemptionManager{
 	
-	public static enum Status{
+	public enum Status{
 		EXEMPTED,
 		NOT_EXEMPTED,
 		NEEDS_EXEMPTION,
@@ -32,7 +32,7 @@ public class ExemptionManager{
 			public int exempt = 0;
 		}
 		/** Counts per type, for players being exempted already, to prevent unexempting. */
-		public final Map<CheckType, CheckEntry> entries = new HashMap<CheckType, CheckEntry>();
+		public final Map<CheckType, CheckEntry> entries = new HashMap<>();
 		/**
 		 * If empty, it can get removed.
 		 * @return
@@ -128,7 +128,7 @@ public class ExemptionManager{
 	 * @param loadFactor For the exemption HashMap.
 	 */
 	public ExemptionManager(int initialCapacity, float loadFactor) {
-		exemptions = new HashMap<String, ExemptionManager.ExemptionInfo>(initialCapacity, loadFactor);
+		exemptions = new HashMap<>(initialCapacity, loadFactor);
 	}
 
 	/**

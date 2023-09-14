@@ -20,12 +20,10 @@ public class HookBlockPlace extends ClassExemptionHook implements Listener{
 
 	public HookBlockPlace() {
 		super("block-place.");
-		defaultClasses.addAll(Arrays.asList(new String[]{
-			// MachinaCraft
-			"ArtificialBlockPlaceEvent",
-			// MagicSpells
-			"MagicSpellsBlockPlaceEvent"
-		}));
+		defaultClasses.addAll(Arrays.asList(// MachinaCraft
+                "ArtificialBlockPlaceEvent",
+                // MagicSpells
+                "MagicSpellsBlockPlaceEvent"));
 	}
 
 	@Override

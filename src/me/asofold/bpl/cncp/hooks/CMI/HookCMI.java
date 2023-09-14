@@ -10,7 +10,6 @@ import com.Zrips.CMI.CMI;
 import fr.neatmonster.nocheatplus.checks.CheckType;
 import fr.neatmonster.nocheatplus.checks.access.IViolationInfo;
 import fr.neatmonster.nocheatplus.hooks.NCPHook;
-import me.asofold.bpl.cncp.CompatNoCheatPlus;
 import me.asofold.bpl.cncp.config.compatlayer.CompatConfig;
 import me.asofold.bpl.cncp.config.compatlayer.CompatConfigFactory;
 import me.asofold.bpl.cncp.config.compatlayer.ConfigUtil;

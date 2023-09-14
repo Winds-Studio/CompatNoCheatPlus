@@ -69,7 +69,7 @@ public abstract class AbstractConfig implements CompatConfig {
 		if ( !hasEntry(path) ) return defaultValue;
 		List<String> strings = getStringList(path, null);
 		if ( strings == null ) return defaultValue;
-		List<Integer> out = new LinkedList<Integer>();
+		List<Integer> out = new LinkedList<>();
 		for ( String s : strings){
 			try{
 				out.add(Integer.parseInt(s));
@@ -85,7 +85,7 @@ public abstract class AbstractConfig implements CompatConfig {
 		if ( !hasEntry(path) ) return defaultValue;
 		List<String> strings = getStringList(path, null);
 		if ( strings == null ) return defaultValue;
-		List<Double> out = new LinkedList<Double>();
+		List<Double> out = new LinkedList<>();
 		for ( String s : strings){
 			try{
 				out.add(Double.parseDouble(s));
@@ -99,9 +99,7 @@ public abstract class AbstractConfig implements CompatConfig {
 	@Override
 	public Set<String> getStringKeys(String path, boolean deep) {
 		if (deep) return getStringKeysDeep(path);
-		Set<String> keys = new HashSet<String>();
-		keys.addAll(getStringKeys(path));
-		return keys;
+        return new HashSet<>(getStringKeys(path));
 		
 	}
 	
@@ -109,7 +107,7 @@ public abstract class AbstractConfig implements CompatConfig {
 	public Set<String> getStringKeysDeep(String path) {
 		// NOTE: pretty inefficient, but aimed at seldomly read sections.
 		Map<String, Object> values = getValuesDeep();
-		Set<String> out = new HashSet<String>();
+		Set<String> out = new HashSet<>();
 		final int len = path.length();
 		for (String key : values.keySet()){
 			if (!key.startsWith(path)) continue;

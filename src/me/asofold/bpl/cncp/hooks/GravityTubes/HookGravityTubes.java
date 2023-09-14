@@ -13,8 +13,8 @@ import me.asofold.bpl.cncp.hooks.generic.ConfigurableHook;
 
 public class HookGravityTubes extends AbstractHook implements Listener, ConfigurableHook {
 
-    public static interface HookFacade{
-        public void onMoveLowest(PlayerMoveEvent event);
+    public interface HookFacade{
+        void onMoveLowest(PlayerMoveEvent event);
     }
 
     protected HookFacade ncpHook = null;

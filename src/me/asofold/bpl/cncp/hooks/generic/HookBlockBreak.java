@@ -20,14 +20,12 @@ public class HookBlockBreak extends ClassExemptionHook implements Listener {
 
 	public HookBlockBreak() {
 		super("block-break.");
-		defaultClasses.addAll(Arrays.asList(new String[]{
-			// MachinaCraft
-			"ArtificialBlockBreakEvent",
-			// mcMMO
-			"FakeBlockBreakEvent",
-			// MagicSpells
-			"MagicSpellsBlockBreakEvent"
-		}));
+		defaultClasses.addAll(Arrays.asList(// MachinaCraft
+                "ArtificialBlockBreakEvent",
+                // mcMMO
+                "FakeBlockBreakEvent",
+                // MagicSpells
+                "MagicSpellsBlockBreakEvent"));
 	}
 
 	@Override

@@ -41,17 +41,17 @@ public class HookCitizens2 extends AbstractHook implements ConfigurableHook{
 		if (ncpHook == null){
 			ncpHook = new NCPHook() {
 				@Override
-				public final boolean onCheckFailure(final CheckType checkType,  final Player player, IViolationInfo info) {
+				public boolean onCheckFailure(final CheckType checkType, final Player player, IViolationInfo info) {
 					return CitizensAPI.getNPCRegistry().isNPC(player);
 				}
 				
 				@Override
-				public final String getHookVersion() {
+				public String getHookVersion() {
 					return "2.0";
 				}
 				
 				@Override
-				public final String getHookName() {
+				public String getHookName() {
 					return "Citizens2(cncp)";
 				}
 			};

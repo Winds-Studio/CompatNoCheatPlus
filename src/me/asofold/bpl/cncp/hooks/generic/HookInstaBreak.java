@@ -1,5 +1,6 @@
 package me.asofold.bpl.cncp.hooks.generic;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,9 +24,9 @@ import fr.neatmonster.nocheatplus.utilities.TickTask;
 
 public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Listener {
 	
-	public static interface InstaExemption{
-		public void addExemptNext(CheckType[] types);
-		public Set<CheckType> getExemptNext();
+	public interface InstaExemption{
+		void addExemptNext(CheckType[] types);
+		Set<CheckType> getExemptNext();
 	}
 	
 	public static class StackEntry{
@@ -53,7 +54,7 @@ public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Li
 	
 	protected boolean enabled = true;
 	
-	protected final List<StackEntry> stack = new LinkedList<StackEntry>();
+	protected final List<StackEntry> stack = new LinkedList<>();
 	
 	@Override
 	public String getHookName() {
@@ -90,12 +91,10 @@ public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Li
 	@Override
 	public Listener[] getListeners() {
 		runtime = new InstaExemption() {
-			protected final Set<CheckType> types = new HashSet<CheckType>();
+			private final Set<CheckType> types = new HashSet<>();
 			@Override
-			public final void addExemptNext(final CheckType[] types) {
-				for (int i = 0; i < types.length; i++){
-					this.types.add(types[i]);
-				}
+			public void addExemptNext(final CheckType[] types) {
+				this.types.addAll(Arrays.asList(types));
 			}
 			@Override
 			public Set<CheckType> getExemptNext() {
@@ -113,7 +112,7 @@ public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Li
 		return a;
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)	
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBlockDamage(final BlockDamageEvent event){
 		checkStack();
 		if (!event.isCancelled() && event.getInstaBreak()){
@@ -124,7 +123,7 @@ public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Li
 		}
 	}
 	
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = false)
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onBlockBreakLowest(final BlockBreakEvent event){
 		checkStack();
 		if (!stack.isEmpty()){
@@ -134,7 +133,7 @@ public class HookInstaBreak extends AbstractHook implements ConfigurableHook, Li
 		}
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void onBlockBreakMONITOR(final BlockBreakEvent event){
 		if (!stack.isEmpty()){
 			final Player player = event.getPlayer();

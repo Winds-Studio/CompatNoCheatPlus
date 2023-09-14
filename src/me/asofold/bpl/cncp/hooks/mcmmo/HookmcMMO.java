@@ -28,27 +28,27 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	 * @author mc_dev
 	 *
 	 */
-	public static interface HookFacade{
-		public void damageLowest(Player player);
-		public void damageMonitor(Player player);
-		public void blockDamageLowest(Player player);
-		public void blockDamageMonitor(Player player);
+	public interface HookFacade{
+		void damageLowest(Player player);
+		void damageMonitor(Player player);
+		void blockDamageLowest(Player player);
+		void blockDamageMonitor(Player player);
 		/**
 		 * If to cancel the event.
 		 * @param player
 		 * @return
 		 */
-		public boolean blockBreakLowest(Player player);
-		public void blockBreakMontitor(Player player);
+        boolean blockBreakLowest(Player player);
+		void blockBreakMontitor(Player player);
 	}
 	
-	protected HookFacade ncpHook = null;
+	private HookFacade ncpHook = null;
 	
-	protected boolean enabled = true;
+	private boolean enabled = true;
 	
-	protected String configPrefix = "mcmmo.";
+	private final String configPrefix = "mcmmo.";
 	
-	protected boolean useInstaBreakHook = true;
+	private boolean useInstaBreakHook = true;
 	
 
 	public HookmcMMO(){
@@ -56,9 +56,9 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	}
 	
 	
-	protected final PluginGetter<mcMMO> fetch = new PluginGetter<mcMMO>("mcMMO");
+	private final PluginGetter<mcMMO> fetch = new PluginGetter<>("mcMMO");
 
-	protected int blocksPerSecond = 30;
+	private int blocksPerSecond = 30;
 	
 
 	
@@ -106,14 +106,14 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	//////////////////////////
 	
 	@EventHandler(priority=EventPriority.LOWEST)
-	final void onDamageLowest(final FakeEntityDamageByEntityEvent event){
+    void onDamageLowest(final FakeEntityDamageByEntityEvent event){
 		final Entity entity = event.getDamager();
 		if (entity instanceof Player)
 			ncpHook.damageLowest((Player) entity);
 	}
 	
 	@EventHandler(priority=EventPriority.MONITOR)
-	final void onDamageMonitor(final FakeEntityDamageByEntityEvent event){
+    void onDamageMonitor(final FakeEntityDamageByEntityEvent event){
 		final Entity entity = event.getDamager();
 		if (entity instanceof Player)
 			ncpHook.damageMonitor((Player) entity);
@@ -124,12 +124,12 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	//////////////////////////
 	
 	@EventHandler(priority=EventPriority.LOWEST)
-	final void onBlockDamageLowest(final FakeBlockDamageEvent event){
+    void onBlockDamageLowest(final FakeBlockDamageEvent event){
 		ncpHook.blockDamageLowest(event.getPlayer());
 	}
 	
 	@EventHandler(priority=EventPriority.LOWEST)
-	final void onBlockDamageMonitor(final FakeBlockDamageEvent event){
+    void onBlockDamageMonitor(final FakeBlockDamageEvent event){
 		ncpHook.blockDamageMonitor(event.getPlayer());
 	}
 	
@@ -138,7 +138,7 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	//////////////////////////
 	
 	@EventHandler(priority=EventPriority.LOWEST)
-	final void onBlockBreakLowest(final FakeBlockBreakEvent event){
+    void onBlockBreakLowest(final FakeBlockBreakEvent event){
 		if (ncpHook.blockBreakLowest(event.getPlayer())){
 			event.setCancelled(true);
 //			System.out.println("Cancelled for frequency.");
@@ -146,7 +146,7 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	}
 	
 	@EventHandler(priority=EventPriority.MONITOR)
-	final void onBlockBreakLMonitor(final FakeBlockBreakEvent event){
+    void onBlockBreakLMonitor(final FakeBlockBreakEvent event){
 		ncpHook.blockBreakMontitor(event.getPlayer());
 	}
 	

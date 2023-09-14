@@ -49,7 +49,6 @@ public class CompatNoCheatPlus extends Plugin implements Listener {
         return ProxyServer.getInstance().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
     }
 
-    @SuppressWarnings("deprecation")
     private boolean isBedrockPlayer(ProxiedPlayer player) {
         if (floodgate) {
             return FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId());
@@ -79,8 +78,6 @@ public class CompatNoCheatPlus extends Plugin implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        getProxy().getScheduler().schedule(this, () -> {
-            server.sendData("cncp:geyser", outputStream.toByteArray());
-        }, 1L, TimeUnit.SECONDS);
+        getProxy().getScheduler().schedule(this, () -> server.sendData("cncp:geyser", outputStream.toByteArray()), 1L, TimeUnit.SECONDS);
     }
 }

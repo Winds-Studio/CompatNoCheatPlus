@@ -4,7 +4,6 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.permissions.Permissible;
 
 import com.benzoft.gravitytubes.GTPerm;
 import com.benzoft.gravitytubes.GravityTube;
@@ -38,11 +37,9 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
     public final boolean onCheckFailure(final CheckType checkType, final Player player, final IViolationInfo info) {
         //if (checkType == CheckType.MOVING_CREATIVEFLY && !ConfigFile.getInstance().isSneakToFall() )
         if (player.getGameMode() == GameMode.SPECTATOR) return false;
-        if ((checkType == CheckType.MOVING_CREATIVEFLY || checkType == CheckType.MOVING_SURVIVALFLY) && GTPerm.USE.checkPermission((Permissible)player)) {
+        if ((checkType == CheckType.MOVING_CREATIVEFLY || checkType == CheckType.MOVING_SURVIVALFLY) && GTPerm.USE.checkPermission(player)) {
             final GravityTube tube = GravityTubesFile.getInstance().getTubes().stream().filter(gravityTube -> isInTube(gravityTube, player, true, true)).findFirst().orElse(null);
-            if (tube != null) {
-                return true;
-            }
+            return tube != null;
         }
         return false;
     }
@@ -68,7 +65,7 @@ public class HookFacadeImpl implements HookFacade, NCPHook {
         if (p.getGameMode() == GameMode.SPECTATOR) return;
         final double hDist = TrigUtil.xzDistance(event.getFrom(), event.getTo());
         final double vDist = event.getFrom().getY() - event.getTo().getY();
-        if (GTPerm.USE.checkPermission((Permissible)p) 
+        if (GTPerm.USE.checkPermission(p)
             && vDist > 0 && hDist < 0.35 
             && ConfigFile.getInstance().isDisableFallDamage() && p.isSneaking()) {
             final GravityTube tube = GravityTubesFile.getInstance().getTubes().stream().filter(gravityTube -> isInTube(gravityTube, p, false, false)).findFirst().orElse(null);
