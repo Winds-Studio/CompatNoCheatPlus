@@ -17,6 +17,11 @@ jobs:
         run: wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
       - name: Build Spigot 1.8.8
         run: java -jar BuildTools.jar --rev 1.8.8
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
       - name: Build CompatNoCheatPlus
         run: mvn clean package
       - name: Upload CompatNoCheatPlus
