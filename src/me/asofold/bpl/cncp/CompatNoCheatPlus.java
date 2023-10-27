@@ -176,27 +176,37 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.generic.HookSetSpeed());
         }
-        catch (Throwable ignored) {}
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
         // Citizens 2
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.citizens2.HookCitizens2());
         }
-        catch (Throwable ignored) {}
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
         // mcMMO
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.mcmmo.HookmcMMO());
         }
-        catch (Throwable ignored) {}
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
         // GravityTubes
         try {
         	builtinHooks.add(new me.asofold.bpl.cncp.hooks.GravityTubes.HookGravityTubes());
         }
-        catch (Throwable ignored) {}
+        catch (Throwable e) {
+            e.printStackTrace();
+        }
         // CMI
         try {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.CMI.HookCMI());
         }
-        catch (Throwable ignored){}
+        catch (Throwable e){
+            e.printStackTrace();
+        }
 //        // MagicSpells
 //        try{
 //            builtinHooks.add(new me.asofold.bpl.cncp.hooks.magicspells.HookMagicSpells());
@@ -226,7 +236,9 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
                 try{
                     addHook(hook);
                 }
-                catch (Throwable ignored){}
+                catch (Throwable e){
+                    e.printStackTrace();
+                }
             }
         }
     }

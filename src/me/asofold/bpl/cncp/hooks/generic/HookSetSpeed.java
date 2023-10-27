@@ -57,7 +57,9 @@ public class HookSetSpeed extends AbstractHook implements Listener, Configurable
 			// Initialize here, at the end of enable.
 			init();
 		}
-		catch (Throwable ignored){}
+		catch (Throwable e){
+			e.printStackTrace();
+		}
 		return new Listener[]{this}	;
 	}
 	

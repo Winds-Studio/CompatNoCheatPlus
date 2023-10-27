@@ -39,7 +39,9 @@ public class BedrockPlayerListener implements Listener, PluginMessageListener {
                 GeyserSession session = GeyserConnector.getInstance().getPlayerByUuid(player.getUniqueId());
                 if (session != null) processExemption(player);
             } 
-            catch (NullPointerException ignored) {}
+            catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
     }
 

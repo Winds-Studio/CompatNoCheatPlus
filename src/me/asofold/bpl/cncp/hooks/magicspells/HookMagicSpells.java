@@ -86,7 +86,8 @@ public class HookMagicSpells extends AbstractConfigurableHook implements Listene
 				try{
 					type = CheckType.valueOf(input);
 				}
-				catch(Throwable ignored){
+				catch(Throwable e){
+					e.printStackTrace();
 				}
 				if (type == null){
 					Bukkit.getLogger().warning("[CompatNoCheatPlus] HookMagicSpells: Bad check type at " + fullKey + ": " + input);

@@ -22,8 +22,8 @@ public class CompatConfigFactory {
 //		}
 		try{
 			return new NewConfig(file);
-		} catch (Throwable ignored){
-			
+		} catch (Throwable e){
+			e.printStackTrace();
 		}
 		return out;
 	}

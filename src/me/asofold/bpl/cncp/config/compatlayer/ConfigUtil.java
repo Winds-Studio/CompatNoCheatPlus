@@ -70,17 +70,20 @@ public class ConfigUtil {
 		try{
 			Double.parseDouble(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException ignored){
+		} catch (NumberFormatException e){
+			e.printStackTrace();
 		}
 		try{
 			Long.parseLong(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException ignored){
+		} catch (NumberFormatException e){
+			e.printStackTrace();
 		}
 		try{
 			Integer.parseInt(input);
 			return "'"+input+"'";
-		} catch (NumberFormatException ignored){
+		} catch (NumberFormatException e){
+			e.printStackTrace();
 		}
 		return input;
 	}
