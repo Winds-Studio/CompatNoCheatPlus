@@ -15,26 +15,27 @@
     
     <!-- Repositories -->
     <repositories>
+        <!-- GeyesrMC -->
         <repository>
             <id>opencollab-main-repo</id>
             <url>https://repo.opencollab.dev/main/</url>
         </repository>
-        <repository>
-            <id>opencollab-snapshot-repo</id>
-            <url>https://repo.opencollab.dev/maven-snapshots/</url>
-        </repository>
+        <!-- JitPack -->
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <!-- Viaversion -->
         <repository>
             <id>viaversion-repo</id>
             <url>https://repo.viaversion.com</url>
         </repository>
+        <!-- Bungeecord -->
         <repository>
             <id>bungeecord-repo</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
+        <!-- Citizens -->
         <repository>
             <id>citizens-repo</id>
             <url>https://maven.citizensnpcs.co/repo</url>
@@ -52,14 +53,14 @@
        <dependency>
           <groupId>com.gmail.nossr50.mcMMO</groupId>
           <artifactId>mcMMO</artifactId>
-          <version>2.1.223</version>
+          <version>2.1.226-SNAPSHOT</version>
           <scope>system</scope>
           <systemPath>${basedir}/libs/mcMMO.jar</systemPath>
        </dependency>
        <dependency>
           <groupId>net.citizensnpcs</groupId>
           <artifactId>citizensapi</artifactId>
-          <version>2.0.32-SNAPSHOT</version>
+          <version>2.0.33-SNAPSHOT</version>
           <scope>provided</scope>
        </dependency>
        <dependency>
@@ -74,25 +75,25 @@
           <artifactId>CMI</artifactId>
           <version>9.5.0.8</version>
           <scope>system</scope>
-          <systemPath>${basedir}/libs/CMI-API9.5.0.8.jar</systemPath>
+          <systemPath>${basedir}/libs/CMI-API9.6.5.0.jar</systemPath>
        </dependency>
        <dependency>
-	      <groupId>com.github.updated-nocheatplus.nocheatplus</groupId>
+	      <groupId>fr.neaetmonster.nocheatplus</groupId>
 	      <artifactId>nocheatplus</artifactId>
-	      <version>-SNAPSHOT</version>
+	      <version>3.17.1-SNAPSHOT-Updated-2023_10_27-13_38</version>
           <systemPath>${basedir}/libs/NoCheatPlus.jar</systemPath>
           <scope>system</scope>
        </dependency>
        <dependency>
           <groupId>org.geysermc</groupId>
           <artifactId>connector</artifactId>
-          <version>1.4.2-SNAPSHOT</version>
+          <version>1.4.3-SNAPSHOT</version>
           <scope>provided</scope>
        </dependency>
        <dependency>
           <groupId>org.geysermc.floodgate</groupId>
           <artifactId>api</artifactId>
-           <version>fix-weird-via-issue-2.2.2-SNAPSHOT</version>
+           <version>2.2.2-SNAPSHOT</version>
           <scope>provided</scope>
        </dependency>
        <dependency>
@@ -103,7 +104,7 @@
        <dependency>
            <groupId>com.viaversion</groupId>
            <artifactId>viaversion-api</artifactId>
-           <version>LATEST</version>
+           <version>4.8.1</version>
        </dependency>
        <dependency>
           <groupId>net.md-5</groupId>
@@ -162,22 +163,6 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <finalName>cncp</finalName>
-                    <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                        <pomPropertiesFile>false</pomPropertiesFile>
-                        <manifest>
-                            <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
-                            <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
-                        </manifest>
-                    </archive>
                 </configuration>
             </plugin>
         </plugins>
