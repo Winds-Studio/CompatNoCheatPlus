@@ -8,9 +8,9 @@
   
     <!-- Source code -->
     <scm>
-        <developerConnection>scm:git:git@github.com:asofold/${project.name}.git</developerConnection>
-        <connection>scm:git:git://github.com/asofold/${project.name}.git</connection>
-        <url>https://github.com/asofold/${project.name}</url>
+        <developerConnection>scm:git:git@github.com:Updated-NoCheatPlus/${project.name}.git</developerConnection>
+        <connection>scm:git:git://github.com/Updated-NoCheatPlus/${project.name}.git</connection>
+        <url>https://github.com/Updated-NoCheatPlus/${project.name}</url>
     </scm>
     
     <!-- Repositories -->
