@@ -22,7 +22,6 @@ public class HookMagicSpells extends AbstractConfigurableHook implements Listene
 	
 	public HookMagicSpells(){
 		super("MagicSpells(default)", "1.0", "magicspells.");
-		assertPluginPresent("MagicSpells");
 	}
 
 	@Override

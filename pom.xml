@@ -80,7 +80,7 @@
        <dependency>
 	      <groupId>fr.neaetmonster.nocheatplus</groupId>
 	      <artifactId>nocheatplus</artifactId>
-	      <version>3.17.1-SNAPSHOT-Updated-2023_10_27-13_38</version>
+	      <version>3.17.1-SNAPSHOT-Updated-2023_12_11-17_11</version>
           <systemPath>${basedir}/libs/NoCheatPlus.jar</systemPath>
           <scope>system</scope>
        </dependency>

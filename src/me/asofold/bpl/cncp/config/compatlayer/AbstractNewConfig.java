@@ -104,7 +104,7 @@ public abstract class AbstractNewConfig extends AbstractConfig {
 		List<String> entries = config.getStringList(path);
 		if ( entries == null ) return defaultValue;
 		for ( String entry : entries){
-			if (entry instanceof String) out.add(entry);
+			if (entry != null) out.add(entry);
 			else{
 				try{
 					out.add(entry);

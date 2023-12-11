@@ -35,10 +35,6 @@ public class HookCMI extends AbstractHook implements Listener, ConfigurableHook 
     protected final CheckType[] exemptPlaceMany = new CheckType[]{
             CheckType.BLOCKPLACE, CheckType.COMBINED_IMPROBABLE,
     };
-    
-    public HookCMI(){
-        assertPluginPresent("CMI");
-    }
 
     @Override
     public String getHookName() {

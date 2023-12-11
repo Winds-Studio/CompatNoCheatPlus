@@ -49,13 +49,7 @@ public final class HookmcMMO extends AbstractHook implements Listener, Configura
 	private final String configPrefix = "mcmmo.";
 	
 	private boolean useInstaBreakHook = true;
-	
 
-	public HookmcMMO(){
-		assertPluginPresent("mcMMO");
-	}
-	
-	
 	private final PluginGetter<mcMMO> fetch = new PluginGetter<>("mcMMO");
 
 	private int blocksPerSecond = 30;

@@ -33,13 +33,11 @@ public class BedrockPlayerListener implements Listener, PluginMessageListener {
             if (FloodgateApi.getInstance().isFloodgatePlayer(player.getUniqueId())) {
                 processExemption(player);
             }
-        } 
-        else if (geyser != null && geyser.isEnabled()) {
+        } else if (geyser != null && geyser.isEnabled()) {
             try {
                 GeyserSession session = GeyserConnector.getInstance().getPlayerByUuid(player.getUniqueId());
                 if (session != null) processExemption(player);
-            } 
-            catch (NullPointerException e) {
+            } catch (NullPointerException e) {
                 e.printStackTrace();
             }
         }

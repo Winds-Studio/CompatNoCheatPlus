@@ -34,13 +34,4 @@ public abstract class AbstractHook implements Hook{
 		// No hooks to add to NCP.
 		return null;
 	}
-
-	/**
-	 * Throw a runtime exception if the plugin is not present.
-	 * @param pluginName
-	 */
-	protected void assertPluginPresent(String pluginName){
-		if (Bukkit.getPluginManager().getPlugin(pluginName) == null) throw new RuntimeException("Assertion, " + getHookName() + ": Plugin " + pluginName + " is not present.");
-	}
-
 }

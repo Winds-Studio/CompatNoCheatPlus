@@ -22,7 +22,6 @@ public class HookCitizens2 extends AbstractHook implements ConfigurableHook{
 	protected final String configPrefix = "citizens2.";
 	
 	public HookCitizens2(){
-		assertPluginPresent("Citizens");
 		CitizensAPI.getNPCRegistry(); // to let it fail for old versions.
 	}
 

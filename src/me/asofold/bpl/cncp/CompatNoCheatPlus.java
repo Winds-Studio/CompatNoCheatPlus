@@ -180,38 +180,25 @@ public class CompatNoCheatPlus extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
         // Citizens 2
-        try {
+        if (Bukkit.getPluginManager().getPlugin("Citizens") != null) {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.citizens2.HookCitizens2());
         }
-        catch (Throwable e) {
-            e.printStackTrace();
-        }
         // mcMMO
-        try {
+        if (Bukkit.getPluginManager().getPlugin("mcMMO") != null) {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.mcmmo.HookmcMMO());
         }
-        catch (Throwable e) {
-            e.printStackTrace();
-        }
         // GravityTubes
-        try {
+        if (Bukkit.getPluginManager().getPlugin("GravityTubes") != null) {
         	builtinHooks.add(new me.asofold.bpl.cncp.hooks.GravityTubes.HookGravityTubes());
         }
-        catch (Throwable e) {
-            e.printStackTrace();
-        }
         // CMI
-        try {
+        if (Bukkit.getPluginManager().getPlugin("CMI") != null) {
             builtinHooks.add(new me.asofold.bpl.cncp.hooks.CMI.HookCMI());
         }
-        catch (Throwable e){
-            e.printStackTrace();
-        }
 //        // MagicSpells
-//        try{
+//        if (Bukkit.getPluginManager().getPlugin("MagicSpells") != null) {
 //            builtinHooks.add(new me.asofold.bpl.cncp.hooks.magicspells.HookMagicSpells());
 //        }
-//        catch (Throwable t){}
         // Simple generic hooks
         Collections.addAll(builtinHooks, new HookPlayerClass(),
                 new HookBlockBreak(),

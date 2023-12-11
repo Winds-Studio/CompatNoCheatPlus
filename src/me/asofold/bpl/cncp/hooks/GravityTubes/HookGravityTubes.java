@@ -23,10 +23,6 @@ public class HookGravityTubes extends AbstractHook implements Listener, Configur
 
     protected final String configPrefix = "gravitytubes.";
 
-    public HookGravityTubes(){
-        assertPluginPresent("GravityTubes");
-    }
-
     @Override
     public String getHookName() {
         return "GravityTubes(default)";
